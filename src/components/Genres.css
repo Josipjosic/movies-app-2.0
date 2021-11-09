@@ -1,0 +1,41 @@
+.list-style {
+    list-style-type: none;
+}
+input {
+    width: 50px;
+}
+
+.list-modal {
+    height: 570px;
+    overflow-y: auto;
+}
+li {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 28%;
+}
+.button-search {
+    margin: 2% 40%;
+    font-size: 30px;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+h2 {
+    font-size: 30px;
+    color: #831010;
+    
+}
+p {
+    font-size: 20px;
+}
+.title-div {
+    border-top: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    padding-left: 100px;
+    border-radius: 4%;
+    margin: -18px 0 0 -25px;
+}
