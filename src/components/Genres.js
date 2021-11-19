@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
-import "./Genres.css";
+import "./Genres.scss";
 
 const GENRE_API =
   "https://api.themoviedb.org/3/genre/movie/list?api_key=25410d167eb58e717d563b65bc206ff7";
@@ -8,7 +8,7 @@ const GENRE_API =
 const Genres = (props) => {
   const [genre, setGenre] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState([]);
-  const [search, setSearch] = useState([]);
+
 
 
   useEffect(() => {
