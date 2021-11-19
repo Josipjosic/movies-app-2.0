@@ -27,18 +27,17 @@
           position: fixed;
           color: white;
           overflow-y: scroll;
-           
         }
         /*SCROLL BAR ON DETAILS */
         ::-webkit-scrollbar {
           width: 10px;
         }
-      
+        
         /* Track */
         ::-webkit-scrollbar-track {
           border-radius: 10px;
         }
-         
+        
         /* Handle */
         ::-webkit-scrollbar-thumb {
           background: darkred; 
@@ -52,7 +51,20 @@
       }
       .movieDetailAbout{
         color: white;
-        font-size: 18px;
+        font-size: 17px;
+        margin-top: -20px;
+      }
+      .movieDetailLngComp {
+        list-style-type: none;
+        display: inline-flex;
+        margin-top: -100px;
+        .productionNames{
+          font-size: 15px;
+          margin-left: 10px;
+          li {
+            margin: 0;
+          }
+        }
       }
     }
   }

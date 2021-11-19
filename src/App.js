@@ -12,6 +12,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [modalIsShowing, setModalIsShowing] = useState(false);
   const [genreId, setGenreId] = useState([]);
+  const [loading, setLoading ] = useState('false')
 
   const showModalHandler = () => {
     setModalIsShowing(true);
@@ -34,10 +35,19 @@ function App() {
         .then((data) => {
           setMovies(data.results);
           console.log(data.results);
-        });
+        })
+        .finally(()=>{
+          setLoading(false)
+        })
+        ;
     }
     fetchMoviesHandler();
   }, [page, genreId]);
+
+  if(loading){
+    return <p>Loading...</p>
+  }
+
 
   return (
     <React.Fragment>
