@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-function Authentication() {
-  const [id, setId] = useState([]);
+function Authentication(props) {
+  const [id, setId] = useState();
+  const [token, setToken ] = useState();
+ 
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/authentication/token/new?api_key=25410d167eb58e717d563b65bc206ff7&"
+      "https://api.themoviedb.org/3/authentication/token/new?api_key=25410d167eb58e717d563b65bc206ff7"
     )
       .then((response) => {
         return response.json();
@@ -14,29 +16,27 @@ function Authentication() {
         setId(data.request_token);
         console.log(data.request_token);
       });
-  }, [id]);
+  }, []);
 
-  const btnClick = () => {
-    window.open(
-      `https://www.themoviedb.org/authenticate/${id}?redirect_to=http://localhost:3000/approved`
-    );
-  };
+  const  btnClick = () => {
+    window.open(`https://www.themoviedb.org/authenticate/${id}`);
+  }
 
-  const newId = async (request_token) => {
-    await fetch(
-      "https://api.themoviedb.org/3/authentication/session/new?api_key=25410d167eb58e717d563b65bc206ff7&",
-      {
-        method: "POST",
-        body: { "request_token": `"${id}"` },
-      }
-    );
-  };
-
-  console.log(newId)
+  async function sessionId() {
+    const response = await fetch(`https://api.themoviedb.org/3/authentication/session/new?api_key=25410d167eb58e717d563b65bc206ff7&request_token=${id}`, {
+      method: 'POST',
+      body: {"request_token" : `"${id}"`}
+    });
+    const data = await response.json();
+    setToken(data.session_id)
+    console.log(data)
+  }
 
   return (
     <div>
-      <button onClick={btnClick}>Rate</button>
+      <h1>{id}</h1>
+      <button onClick={sessionId}>Id</button>
+      <button onClick={btnClick}>Click</button>
     </div>
   );
 }

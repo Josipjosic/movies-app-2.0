@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import "./MovieDetail.scss";
+import Authentication from "./hooks/authentication";
 
 function MovieDetail(props) {
   //const MOVIE_ID = `https://api.themoviedb.org/3/movie/${id}?&api_key=25410d167eb58e717d563b65bc206ff7&`;
@@ -67,8 +68,8 @@ function MovieDetail(props) {
           <h5>Popularity: {detail.popularity}</h5>
           <h5 className="movieDetailLngComp">Production Companies: {names.map((cName) => <li className="productionNames" key={cName.id}>{cName.name},</li>)} </h5>
         </div>
-        <div></div>
-      </div>
+        <div><Authentication movieId={id}/> </div>
+    </div>
     </div>
   );
 }
