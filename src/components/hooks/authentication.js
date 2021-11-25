@@ -41,8 +41,8 @@ function Authentication(props) {
       <div className="Rating-star">
         <RatingStars gotToken={token} onClick={btnClick}/>
       </div>
-      <button onClick={sessionId}>Id</button>
-      <button onClick={btnClick}>Click</button>
+      {/*<button onClick={sessionId}>Id</button>*/}
+     {/*<button onClick={btnClick}>Click</button>*/}
     </div>
   );
 }
