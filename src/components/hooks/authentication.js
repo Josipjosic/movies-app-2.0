@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import RatingStars from "../RatingStars";
-import './authentication.scss'
+import "./authentication.scss";
 
 function Authentication(props) {
   const [id, setId] = useState();
-  const [token, setToken] = useState();
+  const inistailToken = localStorage.getItem("token");
+  const [token, setToken] = useState(inistailToken);
+  const movieId = props.movieId
 
+  
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/authentication/token/new?api_key=25410d167eb58e717d563b65bc206ff7"
-    )
+      )
       .then((response) => {
         return response.json();
       })
@@ -17,10 +20,14 @@ function Authentication(props) {
         setId(data.request_token);
         console.log(data.request_token);
       });
-  }, []);
+  }, [movieId]);
 
   const btnClick = () => {
-    window.open(`https://www.themoviedb.org/authenticate/${id}`);
+    if (inistailToken) {
+      alert('You already made an authentication! Please approve it next. We wish you a happy rating! :)')
+    } else {
+      window.open(`https://www.themoviedb.org/authenticate/${id}`);
+    }
   };
 
   async function sessionId() {
@@ -34,15 +41,16 @@ function Authentication(props) {
     const data = await response.json();
     setToken(data.session_id);
     console.log(data);
+    localStorage.setItem("token", token);
   }
 
   return (
-    <div>
+    <div className="Authentication-buttons">
       <div className="Rating-star">
-        <RatingStars gotToken={token} onClick={btnClick}/>
+        <RatingStars movId={movieId} takenToken={inistailToken} fetchedId={id}/>
       </div>
-      {/*<button onClick={sessionId}>Id</button>*/}
-     {/*<button onClick={btnClick}>Click</button>*/}
+      {<button onClick={sessionId}>2. Approve</button>}
+      {<button onClick={btnClick}>1. Authenticate</button>}
     </div>
   );
 }
